@@ -12,7 +12,7 @@
  * Desktop (≥1024px, our own design): media on the left, content + actions
  * on the right.
  */
-import type { NavAction } from '@/components/atoms/IconButton';
+import type { NavAction } from '@/lib/nav';
 import AppHeader from '@/components/organisms/AppHeader';
 import type { ReactNode } from 'react';
 import { cx } from '@/lib/cx';

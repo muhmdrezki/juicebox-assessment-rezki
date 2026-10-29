@@ -71,13 +71,18 @@
     align-items: center;
   }
 
+  /* Right column keeps the mobile width so text and buttons don't stretch. */
   .withMedia .content {
     grid-area: content;
     align-self: end;
+    width: 100%;
+    max-width: var(--content-max);
   }
 
   .withMedia .actions {
     grid-area: actions;
     align-self: start;
+    width: 100%;
+    max-width: var(--content-max);
   }
 }

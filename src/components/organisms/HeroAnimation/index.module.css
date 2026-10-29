@@ -1,0 +1,86 @@
+/*
+ * HeroAnimation — Figma Step 1, the 390 × 346 area between the header and
+ * the headline. Positions are measured from Figma (16px = 1rem); they are
+ * one-off layout values, not design tokens. Written in rem so they grow
+ * together with the text when the user enlarges the browser font.
+ */
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: var(--content-max);
+  height: var(--hero-height);
+}
+
+/* Hexagon: 274 × 290, centred horizontally, 27px from the top.
+   Centred with margin (not transform) because GSAP animates `scale`. */
+.hexagon {
+  position: absolute;
+  top: 1.6875rem; /* 27px */
+  right: 0;
+  left: 0;
+  width: var(--hexagon-width);
+  height: var(--hexagon-height);
+  margin-inline: auto;
+}
+
+/* The Lottie's 650 × 650 canvas has padding around the hexagon: the drawn
+   shape is ~90% of the box, so the canvas is enlarged by 10% (5% each side)
+   to line the Lottie hexagon up with Figma's 274 × 290. */
+.lottie {
+  position: absolute;
+  inset: -5%;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+/* Figma artwork, exactly the 274 × 290 box, on top of the Lottie. */
+.art {
+  object-fit: contain;
+}
+
+/* Labels — Söhne Buch, Text Size/Caption 12px, 135%, 2%, Type/light heading */
+.label {
+  position: absolute;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  color: var(--color-text);
+  white-space: pre-line; /* honour the "\n" line break from Figma */
+}
+
+.growth {
+  top: 2.8125rem; /* 45px */
+  left: var(--page-gutter);
+}
+
+.creativity {
+  top: 5.3125rem; /* 85px */
+  right: 1.875rem; /* 30px */
+}
+
+.sales {
+  top: 9.1875rem; /* 147px */
+  left: var(--page-gutter);
+}
+
+.connection {
+  top: 13.125rem; /* 210px */
+  right: 2.0625rem; /* 33px */
+}
+
+.barrier {
+  top: 17rem; /* 272px */
+  left: var(--page-gutter);
+}
+
+/* ---------- Desktop (our own design) ----------
+   Same composition, enlarged to fill the left column (390 × 1.35 ≈ 526px).
+   `zoom` (not transform) so the layout box grows too and nothing overflows. */
+@media (min-width: 1024px) {
+  .hero {
+    zoom: var(--hero-scale-desktop);
+  }
+}
