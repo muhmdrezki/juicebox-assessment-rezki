@@ -1,7 +1,7 @@
 /*
- * FormStep (molecule) — one screen of the form: the small hexagon, the
- * question, and the field (passed in as children) pinned to the bottom.
- * Figma "Step 3" / "Step 4".
+ * FormStep (molecule) — one screen of the form: the small hexagon and the
+ * question (Prompt) at the top, and the field (passed in as children)
+ * pinned to the bottom. Figma "Step 3" / "Step 4".
  *
  * Vue 3 equivalent: molecules/FormStep/index.vue with a `question` prop
  * and a default <slot /> for the input.
@@ -12,6 +12,7 @@
  */
 import type { ReactNode } from 'react';
 import HexIcon from '@/components/atoms/HexIcon';
+import Prompt from '@/components/molecules/Prompt';
 import styles from './index.module.css';
 
 type FormStepProps = {
@@ -26,12 +27,11 @@ type FormStepProps = {
 export default function FormStep({ inputId, question, children }: FormStepProps) {
   return (
     <div className={styles.step}>
-      <div className={styles.prompt}>
-        <HexIcon />
-        <h1 className={styles.question}>
+      <Prompt icon={<HexIcon />} spacing="lg">
+        <h1>
           <label htmlFor={inputId}>{question}</label>
         </h1>
-      </div>
+      </Prompt>
 
       <div className={styles.answer}>{children}</div>
     </div>

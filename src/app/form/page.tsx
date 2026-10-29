@@ -15,7 +15,7 @@ import { useState } from 'react';
 import HexagonArt from '@/components/atoms/HexagonArt';
 import MultiStepForm, { type FormStepConfig } from '@/components/organisms/MultiStepForm';
 import ScreenLayout from '@/components/templates/ScreenLayout';
-import { useFlowStore, type AnswerName } from '@/store/Flow';
+import { useFlowHydration, useFlowStore, type AnswerName } from '@/store/Flow';
 import { FIRST_NAME_MAX, validateEmail, validateFirstName } from '@/lib/validation';
 
 /** The questions, in order. Copy from Figma. `name` is the key in the answers. */
@@ -44,6 +44,7 @@ const STEPS: readonly FormStepConfig<AnswerName>[] = [
 export default function FormPage() {
   const [step, setStep] = useState(0); // ≈ const step = ref(0)
   // ≈ const { answers } = storeToRefs(useFlowStore()); const { setAnswer } = useFlowStore()
+  useFlowHydration(); // prefill saved answers after mount
   const answers = useFlowStore((s) => s.answers);
   const setAnswer = useFlowStore((s) => s.setAnswer);
   const router = useRouter();

@@ -1,0 +1,24 @@
+/*
+ * Results — Figma "Step 5": the message (inside Prompt) has two paragraphs
+ * 30px apart. The answer summary below is ours (not in Figma).
+ */
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--paragraph-gap-question);
+}
+
+.summary {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+  text-align: center;
+}
+
+/* ---------- Desktop (our own design) ---------- */
+@media (min-width: 1024px) {
+  .summary {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}

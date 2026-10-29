@@ -1,0 +1,24 @@
+/*
+ * HexBadge — the 29 × 31 hexagon icon with the Lottie on top.
+ * The Lottie's 650 × 650 canvas has ~5% padding around its hexagon, so
+ * its box is 5% bigger on each side to line the shapes up (as in HeroAnimation).
+ */
+.badge {
+  position: relative;
+  width: var(--hex-icon-width);
+  height: var(--hex-icon-height);
+}
+
+.lottie {
+  position: absolute;
+  inset: -5%;
+}
+
+/* Recolour the Lottie (#B488F2 in the file) to the Figma icon colour. */
+.lottie path {
+  fill: var(--color-primary-light);
+}
+
+.hidden {
+  visibility: hidden;
+}
