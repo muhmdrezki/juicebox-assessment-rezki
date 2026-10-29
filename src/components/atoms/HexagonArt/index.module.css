@@ -1,4 +1,29 @@
-/* HexagonArt — keep the artwork's proportions inside whatever box the parent gives it. */
+/* HexagonArt — keep the artwork's proportions inside whatever box it fills. */
 .art {
   object-fit: contain;
+}
+
+/* Own box (the image fills it). */
+.box {
+  position: relative;
+}
+
+/* Walkthrough: Figma 146 × 155 */
+.small {
+  width: var(--hexagon-sm-width);
+  height: var(--hexagon-sm-height);
+}
+
+/* Form: no hexagon on phones (Figma Step 3/4) */
+.desktopOnly {
+  display: none;
+}
+
+/* ---------- Desktop (our own design): one large hexagon for every page ---------- */
+@media (min-width: 1024px) {
+  .box {
+    display: block;
+    width: calc(var(--hexagon-width) * var(--hero-scale-desktop));
+    height: calc(var(--hexagon-height) * var(--hero-scale-desktop));
+  }
 }

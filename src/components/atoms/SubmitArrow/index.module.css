@@ -1,0 +1,23 @@
+/*
+ * SubmitArrow — Figma: 31 × 31, radius 27 (round), fill Background/medium
+ * (#FFF 60%), layer opacity 50%; icon 18 × 18 white.
+ */
+.submit {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--submit-size);
+  height: var(--submit-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-submit);
+  color: var(--color-text);
+  opacity: var(--submit-idle-opacity);
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+/* Not in Figma: full strength once the user has typed something. */
+.ready {
+  opacity: 1;
+}

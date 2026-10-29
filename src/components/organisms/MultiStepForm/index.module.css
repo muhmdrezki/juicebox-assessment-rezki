@@ -1,0 +1,6 @@
+/* MultiStepForm — the form fills the content area so the field can sit at the bottom. */
+.form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}

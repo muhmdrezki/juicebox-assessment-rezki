@@ -8,7 +8,7 @@
 | 2026-10-29 | Bagoss variable font pinned to wght 400 / wdth 100 and subset to Latin woff2 (~23 KB) | Figma uses only "Standard Regular"; the 620 KB variable file is too heavy |
 | 2026-10-29 | Logo exported from Figma as SVG and inlined in the `Logo` atom | Pixel-perfect; colour from CSS via `currentColor` |
 | 2026-10-29 | Flow: Home → Walkthrough → Form → Results; Results "Continue" goes home | Matches the Figma prototype links; nothing follows Results in the design |
-| 2026-10-29 | Form data in React Context + sessionStorage; `/results` without data redirects to `/form` | No email in the URL; survives refresh |
+| 2026-10-29 | Form data in React Context + sessionStorage (superseded: Zustand, see below); `/results` without data redirects to `/form` | No email in the URL; survives refresh |
 | 2026-10-29 | Desktop (≥1024px, our design): two columns — hexagon left, content + actions right | Figma is mobile only; a 390px column looks lost on desktop |
 | 2026-10-29 | Lottie loops settle/stop after ~5 s | WCAG 2.2.2; Figma is static so this doesn't contradict the design |
 | 2026-10-29 | Inactive dots keep Figma's 25% white (non-interactive progress indicator); noted in README | Strict PDF: pixel-perfect wins |
@@ -25,3 +25,8 @@
 | 2026-10-29 | Walkthrough copy lights up word by word (GSAP) from #FAFAFA 50% to 100%; only the text slides | Figma shows the effect frozen; dim value measured from a Figma export |
 | 2026-10-29 | Walkthrough back is always a button: previous slide, or router.push('/') on slide 1 | Swapping link ↔ button lost keyboard focus |
 | 2026-10-29 | No regular expressions in the code; HighlightText splits on a plain space | Owner's rule |
+| 2026-10-29 | Form: the question is the visible `<label>` (and `<h1>`); cursor in the field on arrival and each step | Strongest labelling; Figma shows the keyboard open |
+| 2026-10-29 | Form errors (not in Figma): `#FF9B9B` border + 14px message; shown after the first Continue, then live | No red before the user tries |
+| 2026-10-29 | Answers in sessionStorage (FlowContext, later the Zustand store), prefilled when returning; "Start over" clears nothing | Survives refresh on /results; cleared when the tab closes |
+| 2026-10-29 | Email check with string methods (one `@`, text before, a `.` after) instead of the browser's typeMismatch | No regex; the browser accepts `a@b` without a dot |
+| 2026-10-29 | Shared state with Zustand (`src/store/Flow`: index / state / actions) instead of React Context; `persist` + `skipHydration`, restored by `<FlowHydration />` | Owner's choice; closest to Pinia, no provider, built-in sessionStorage persistence |
