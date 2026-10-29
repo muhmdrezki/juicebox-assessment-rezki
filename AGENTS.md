@@ -61,6 +61,8 @@ src/
 - Semantic HTML first; ARIA only when HTML can't express it.
 - DRY, but no speculative abstraction: extract when something is used twice.
 - TypeScript: no `any`, explicit prop types.
+- **No regular expressions** anywhere in `src/` (owner's rule): use plain string methods
+  (`split`, `includes`, `indexOf`, `trim`) or the browser's built-in validation instead.
 
 ## Definition of done (per phase)
 `npm run typecheck`, `npm run lint`, `npm run build` all pass · QA report: pass per requirement ID ·

@@ -1,0 +1,11 @@
+/*
+ * HighlightText — Figma Desktop/H4: Bagoss 22px, 125%, 1%, Type/light heading.
+ * Alignment comes from the parent; the dim/bright animation is done by GSAP.
+ */
+.text {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  letter-spacing: var(--ls-heading);
+  color: var(--color-text);
+}

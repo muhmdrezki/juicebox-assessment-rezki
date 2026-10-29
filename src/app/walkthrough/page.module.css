@@ -1,0 +1,19 @@
+/*
+ * Walkthrough — Figma "AI Talks": padding 48 top / 48 bottom, 48px gap
+ * between the 146 × 155 hexagon and the 150px text box.
+ */
+.hexagon {
+  position: relative; /* HexagonArt fills this box */
+  width: var(--hexagon-sm-width);
+  height: var(--hexagon-sm-height);
+  margin-block: var(--space-12);
+}
+
+/* ---------- Desktop (our own design): big hexagon in the left column ---------- */
+@media (min-width: 1024px) {
+  .hexagon {
+    width: calc(var(--hexagon-width) * var(--hero-scale-desktop));
+    height: calc(var(--hexagon-height) * var(--hero-scale-desktop));
+    margin-block: 0;
+  }
+}

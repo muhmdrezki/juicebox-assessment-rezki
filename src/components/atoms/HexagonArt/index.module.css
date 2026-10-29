@@ -1,0 +1,4 @@
+/* HexagonArt — keep the artwork's proportions inside whatever box the parent gives it. */
+.art {
+  object-fit: contain;
+}
