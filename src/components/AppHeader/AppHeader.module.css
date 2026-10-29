@@ -1,0 +1,39 @@
+.header {
+  display: grid;
+  grid-template-columns: var(--icon-button-size) 1fr var(--icon-button-size);
+  grid-template-areas: 'back logo restart';
+  align-items: center;
+  height: var(--header-height);
+}
+
+.logo {
+  grid-area: logo;
+  justify-self: center;
+  width: 7.75rem;
+  height: auto;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.iconButton:hover {
+  background: rgb(255 255 255 / 0.18);
+}
+
+.back {
+  grid-area: back;
+}
+
+.restart {
+  grid-area: restart;
+}

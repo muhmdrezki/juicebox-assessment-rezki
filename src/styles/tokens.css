@@ -1,0 +1,75 @@
+/*
+ * Design tokens. Every colour, font size, space and radius used in the app
+ * comes from here, so components never hard-code design values.
+ *
+ * Values are taken from the Figma mobile frames (390 × 844).
+ *
+ * Breakpoints (CSS custom properties can't be used inside @media, so they
+ * are documented here and used literally in the modules):
+ *   tablet  — @media (min-width: 768px)
+ *   desktop — @media (min-width: 1024px)
+ */
+
+:root {
+  /* Colour */
+  --color-bg: #0b0d11;
+  --color-bg-glow: #222736;
+  --color-text: #ffffff;
+  --color-text-muted: rgb(255 255 255 / 0.5);
+  --color-primary: #cbaaff;
+  --color-on-primary: #0b0d11;
+  --color-light: #fafafa;
+  --color-on-light: #0b0d11;
+  --color-surface: rgb(255 255 255 / 0.1);
+  --color-border: rgb(255 255 255 / 0.4);
+  --color-error: #ff9b9b;
+  --color-focus: #cbaaff;
+
+  /* Typography — --font-graphik is injected by next/font in layout.tsx */
+  --font-body: var(--font-graphik), system-ui, -apple-system, sans-serif;
+
+  --fs-xs: 0.75rem;   /* 12px — floating labels */
+  --fs-sm: 0.875rem;  /* 14px — error messages */
+  --fs-md: 1rem;      /* 16px — buttons, inputs */
+  --fs-lg: 1.125rem;  /* 18px — form questions */
+  --fs-xl: 1.5rem;    /* 24px — walkthrough copy */
+  --fs-2xl: 1.75rem;  /* 28px — home headline */
+
+  --lh-tight: 1.2;
+  --lh-body: 1.35;
+
+  --ls-tight: -0.02em;
+
+  /* Spacing (4px scale) */
+  --space-1: 0.25rem;  /* 4  */
+  --space-2: 0.5rem;   /* 8  */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.25rem;  /* 20 */
+  --space-6: 1.5rem;   /* 24 */
+  --space-8: 2rem;     /* 32 */
+  --space-10: 2.5rem;  /* 40 */
+
+  /* Radii */
+  --radius-md: 1rem;
+  --radius-full: 9999px;
+
+  /* Sizes */
+  --page-gutter: var(--space-5);
+  --content-max: 30rem;
+  --header-height: 5rem;
+  --icon-button-size: 2.875rem;
+  --control-height: 3.75rem;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+  }
+}
