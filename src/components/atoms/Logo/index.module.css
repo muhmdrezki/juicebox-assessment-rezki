@@ -1,0 +1,6 @@
+/* Logo — Figma "Frame 639": 123 × 29, Type/light heading */
+.logo {
+  width: var(--logo-width);
+  height: auto;
+  color: var(--color-text);
+}

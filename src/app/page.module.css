@@ -1,0 +1,13 @@
+/* Homepage headline — Figma: Bagoss 28px, line height 120%, 1%, centred. */
+.headline {
+  margin-top: auto;
+  padding-bottom: var(--space-6);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  text-align: center;
+}
+
+/* "technology" — Brand Colours/Primary Colours light */
+.highlight {
+  color: var(--color-primary-light);
+}

@@ -1,0 +1,19 @@
+/*
+ * AppHeader — mobile first. Three equal-width columns keep the logo
+ * exactly centred whether or not the back button is present.
+ */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: var(--header-height);
+  padding-inline: var(--page-gutter);
+}
+
+.side {
+  display: flex;
+}
+
+.end {
+  justify-content: flex-end;
+}

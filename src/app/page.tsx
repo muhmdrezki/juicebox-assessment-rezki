@@ -1,12 +1,23 @@
-import Screen from '@/components/Screen/Screen';
+/*
+ * Homepage route ("/").
+ *
+ * Vue 3 equivalent: pages/Home/index.vue registered at path '/'.
+ * In Next.js the folder path IS the route: app/page.tsx → "/".
+ *
+ * Phase (a) placeholder: shows the layout, fonts and header only.
+ * The Lottie hexagon, GSAP, Lenis and the button arrive in phase (b).
+ */
+import ScreenLayout from '@/components/templates/ScreenLayout';
+import styles from './page.module.css';
 
-// Placeholder — the real homepage is built in phase (b).
+/** Homepage (placeholder until phase b). */
 export default function HomePage() {
   return (
-    <Screen>
-      <h1 style={{ fontSize: 'var(--fs-2xl)', letterSpacing: 'var(--ls-tight)', lineHeight: 'var(--lh-tight)', textAlign: 'center', marginTop: 'auto' }}>
-        Compare your thoughts on <span style={{ color: 'var(--color-primary)' }}>technology</span> with current industry opinions.
+    <ScreenLayout>
+      <h1 className={styles.headline}>
+        Compare your thoughts on <span className={styles.highlight}>technology</span> with current
+        industry opinions.
       </h1>
-    </Screen>
+    </ScreenLayout>
   );
 }

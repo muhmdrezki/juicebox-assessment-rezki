@@ -1,0 +1,83 @@
+/*
+ * ScreenLayout — mobile first (Figma 390 × 844).
+ * The desktop block at the bottom only adds to this; nothing is undone.
+ */
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--content-max);
+  min-height: 100dvh;
+  margin-inline: auto;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.media {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding-inline: var(--page-gutter);
+}
+
+/* Figma "Chatbot textbox" action bar: padding 24 / 20, pinned to the bottom. */
+.actions {
+  margin-top: auto;
+  padding: var(--space-6) var(--page-gutter);
+}
+
+/* ---------- Desktop (our own design; Figma is mobile only) ---------- */
+@media (min-width: 1024px) {
+  .screen {
+    max-width: var(--layout-max-desktop);
+  }
+
+  /* Without media: keep the mobile column, centred. */
+  .main {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    justify-content: center;
+  }
+
+  .actions {
+    margin-top: 0;
+  }
+
+  /* With media: two columns — hexagon left, content + actions right. */
+  .withMedia {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'media content'
+      'media actions';
+    grid-template-rows: auto auto;
+    align-content: center;
+    column-gap: var(--space-12);
+    max-width: none;
+  }
+
+  .withMedia .media {
+    grid-area: media;
+    align-items: center;
+  }
+
+  .withMedia .content {
+    grid-area: content;
+    align-self: end;
+  }
+
+  .withMedia .actions {
+    grid-area: actions;
+    align-self: start;
+  }
+}
