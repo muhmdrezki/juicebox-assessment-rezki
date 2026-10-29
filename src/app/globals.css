@@ -97,11 +97,29 @@ h3 {
   [data-reveal]:not([style*='visibility']) {
     animation: reveal-failsafe 0s 2.5s forwards;
   }
+
+  /*
+   * Same idea for elements that must stay focusable while hidden (the form
+   * field): only their opacity starts at 0, so keyboard focus still works.
+   */
+  [data-fade] {
+    opacity: 0;
+  }
+
+  [data-fade]:not([style*='opacity']) {
+    animation: fade-failsafe 0s 2.5s forwards;
+  }
 }
 
 @keyframes reveal-failsafe {
   to {
     visibility: visible;
+  }
+}
+
+@keyframes fade-failsafe {
+  to {
+    opacity: 1;
   }
 }
 

@@ -9,6 +9,7 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
+import RouteFocus from '@/providers/RouteFocus';
 import SmoothScroll from '@/providers/SmoothScroll';
 import '@/styles/tokens.css';
 import './globals.css';
@@ -39,7 +40,7 @@ const sohne = localFont({
 export const metadata: Metadata = {
   title: {
     template: '%s | juicebox',
-    default: 'juicebox — Get a reality check',
+    default: 'Get a reality check | juicebox', // the homepage (the template only applies to child routes)
   },
   description: 'Compare your thoughts on technology with current industry opinions.',
 };
@@ -57,10 +58,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         {/* Without JavaScript nothing animates, so show the [data-reveal] content. */}
         <noscript>
-          <style>{'[data-reveal] { visibility: visible !important; }'}</style>
+          <style>{'[data-reveal] { visibility: visible !important; } [data-fade] { opacity: 1 !important; }'}</style>
         </noscript>
         {/* ≈ app.use(SmoothScrollPlugin): Lenis for every page */}
         <SmoothScroll>{children}</SmoothScroll>
+        {/* ≈ router.afterEach: keyboard focus to the new screen after a page change */}
+        <RouteFocus />
       </body>
     </html>
   );
