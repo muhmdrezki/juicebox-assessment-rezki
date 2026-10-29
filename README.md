@@ -3,7 +3,7 @@
 A mobile-first web app built from the Juicebox Figma design:
 **Home → Walkthrough → Form → Results.**
 
-- **Live:** _added after the Vercel deploy_
+- **Live:** https://juicebox-assessment-rezki.vercel.app
 - **Stack:** Next.js 16 (App Router) · React 19 · TypeScript (strict) · CSS Modules + CSS variables ·
   GSAP · Lenis · lottie-web · Swiper · Zustand
 

@@ -37,3 +37,4 @@
 | 2026-10-29 | `turbopack.root` set instead of deleting the stray parent `package-lock.json`; `engines.node >= 20.9.0` | Don't touch files outside the repo; Next 16 minimum |
 | 2026-10-29 | Deploy to Vercel after phase F via the Vercel CLI (owner logs in) | Owner's choice |
 | 2026-10-29 | RouteFocus: after in-app navigation, focus the new screen root unless the page focused something | QA: focus fell to <body> after page changes (WCAG 2.4.3) |
+| 2026-10-29 | Deployed to https://juicebox-assessment-rezki.vercel.app via the Vercel CLI | Owner logged in; production domain is public |

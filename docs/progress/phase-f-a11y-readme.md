@@ -66,3 +66,8 @@ TR-4, TR-7, TR-8, EC-4, OB-8, OB-9, A11Y-1 … A11Y-13 (whole-app pass).
 ## Known gaps (do not report)
 - Remarks 1–11 in the README are deliberate.
 - Next's dev-mode "N" badge (dev only).
+
+## Deploy
+- Production: **https://juicebox-assessment-rezki.vercel.app** (Vercel CLI, `npx vercel --prod`, account `rezkimuhmdwork-8047`).
+- Checked: all routes and assets return 200 publicly; live E2E (form → results with the Lottie badge) works; no console errors.
+- Vercel's default protection covers only the per-deploy preview URLs, not the production domain.
