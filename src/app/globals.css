@@ -1,4 +1,13 @@
-/* Minimal reset */
+/*
+ * Global styles: a small reset, base typography and shared helpers.
+ * Loaded once in app/layout.tsx, after tokens.css.
+ *
+ * Vue 3 equivalent: `sass/app.scss` imported once in main.js.
+ * Everything component-specific lives in that component's index.module.css
+ * (≈ <style scoped>).
+ */
+
+/* ---------- Reset ---------- */
 *,
 *::before,
 *::after {
@@ -11,23 +20,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-}
-
-body {
-  min-height: 100dvh;
-  font-family: var(--font-body);
-  font-size: var(--fs-md);
-  line-height: var(--lh-body);
-  color: var(--color-text);
+  /* Same colour as the page, so phone over-scroll never flashes white. */
   background-color: var(--color-bg);
-  /* Soft glow at the top of every screen, as in the design */
-  background-image: radial-gradient(
-    120% 60% at 50% 0%,
-    var(--color-bg-glow) 0%,
-    var(--color-bg) 70%
-  );
-  background-attachment: fixed;
-  -webkit-font-smoothing: antialiased;
 }
 
 img,
@@ -48,15 +42,46 @@ button {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
-/* One consistent, clearly visible focus ring for keyboard users */
+/* ---------- Base ---------- */
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Figma "Background": radial glow from the top, #222737 → #0C0D10 */
+  background-image: radial-gradient(
+    var(--bg-glow-size) at 50% 0%,
+    var(--color-bg-glow) 0%,
+    var(--color-bg) 100%
+  );
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Every heading uses Bagoss; sizes are set by each component. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: var(--ls-heading);
+}
+
+/* ---------- Accessibility helpers ---------- */
+
+/* One clearly visible focus ring, only for keyboard users (WCAG 2.4.7). */
 :focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 3px;
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
 }
 
-/* Hide content visually but keep it for screen readers */
+/* Hidden on screen, still read by screen readers. */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -69,6 +94,11 @@ a {
   border: 0;
 }
 
+/*
+ * Users who ask for less motion get no CSS animation or smooth scroll.
+ * The single place for CSS; GSAP, Lottie and Lenis check the same media
+ * query in JavaScript (phase b).
+ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

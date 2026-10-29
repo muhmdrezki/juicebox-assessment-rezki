@@ -1,0 +1,25 @@
+/*
+ * IconButton — Figma: 46 × 46, radius 200, fill #FFFFFF 5%,
+ * background blur 120, drop shadow 0 4 20 #000 5%.
+ */
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--blur-surface));
+  box-shadow: var(--shadow-surface);
+  color: var(--color-text);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+/* Not in Figma: a subtle hover for mouse users only (no sticky hover on touch). */
+@media (hover: hover) {
+  .iconButton:hover {
+    background: var(--color-button-ring);
+  }
+}
