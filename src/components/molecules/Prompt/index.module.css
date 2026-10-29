@@ -1,0 +1,36 @@
+/*
+ * Prompt — Figma "Chatbot textbox": padding 24 top, centred column.
+ * Text: Bagoss 19px / 120%, 1%, Type/light heading, 350 wide.
+ */
+.prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-6);
+  text-align: center;
+}
+
+.md {
+  gap: var(--space-6); /* 24 — results */
+}
+
+.lg {
+  gap: var(--space-8); /* 32 — form */
+}
+
+/* Headings inside inherit this size instead of a global h1 size. */
+.text {
+  width: 100%;
+  font-family: var(--font-heading);
+  font-size: var(--fs-question);
+  line-height: var(--lh-question);
+  letter-spacing: var(--ls-heading);
+}
+
+/* ---------- Desktop (our own design) ---------- */
+@media (min-width: 1024px) {
+  .prompt {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

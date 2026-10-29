@@ -49,6 +49,8 @@
   --lh-question: 1.2;
   --lh-body: 1.35;
 
+  --paragraph-gap-question: 1.875rem; /* 30px — Figma paragraph spacing, results message */
+
   --ls-heading: 0.01em;      /* 1% */
   --ls-body: 0.02em;         /* 2% */
 

@@ -1,0 +1,26 @@
+/*
+ * AnswerSummary — Not in Figma (our design, kept quiet so the Figma message
+ * stays the focus): Söhne 16px, labels Type/captions (#FFF 60%), values white.
+ */
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: var(--fs-caption);
+  color: var(--color-text-caption);
+}
+
+.value {
+  margin: 0;
+  overflow-wrap: anywhere; /* long emails wrap instead of overflowing */
+  color: var(--color-text);
+}

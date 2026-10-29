@@ -30,3 +30,6 @@
 | 2026-10-29 | Answers in sessionStorage (FlowContext, later the Zustand store), prefilled when returning; "Start over" clears nothing | Survives refresh on /results; cleared when the tab closes |
 | 2026-10-29 | Email check with string methods (one `@`, text before, a `.` after) instead of the browser's typeMismatch | No regex; the browser accepts `a@b` without a dot |
 | 2026-10-29 | Shared state with Zustand (`src/store/Flow`: index / state / actions) instead of React Context; `persist` + `skipHydration`, restored by `<FlowHydration />` | Owner's choice; closest to Pinia, no provider, built-in sessionStorage persistence |
+| 2026-10-29 | Results: Lottie plays once as the small hexagon (recoloured #CDAAFF) and rests on the Figma icon; quiet "First name / Email" summary below the message (README remark) | PDF needs a results Lottie and an input summary; design shows neither, so both stay minimal |
+| 2026-10-29 | /results without valid saved answers → router.replace('/form'); nothing shown until the store is hydrated | No "Thanks, !" flash; stored data re-validated |
+| 2026-10-29 | Saved answers loaded by each page via useFlowHydration() (replaces the one-time <FlowHydration /> in the layout) | Results page stayed blank after a hot reload; each consumer now ensures the store is loaded |

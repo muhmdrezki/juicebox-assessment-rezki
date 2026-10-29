@@ -64,12 +64,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Every heading uses Bagoss; sizes are set by each component. */
+/* Every heading uses Bagoss; sizes are set by each component (no browser
+   default sizes — a heading without a class takes its parent's size). */
 h1,
 h2,
 h3 {
   font-family: var(--font-heading);
+  font-size: inherit;
   font-weight: 400;
+  line-height: inherit;
   letter-spacing: var(--ls-heading);
 }
 

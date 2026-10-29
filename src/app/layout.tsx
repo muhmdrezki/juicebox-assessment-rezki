@@ -9,7 +9,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
-import FlowHydration from '@/providers/FlowHydration';
 import SmoothScroll from '@/providers/SmoothScroll';
 import '@/styles/tokens.css';
 import './globals.css';
@@ -60,8 +59,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <noscript>
           <style>{'[data-reveal] { visibility: visible !important; }'}</style>
         </noscript>
-        {/* Restores the saved answers (Zustand store) after the page loads in the browser. */}
-        <FlowHydration />
         {/* ≈ app.use(SmoothScrollPlugin): Lenis for every page */}
         <SmoothScroll>{children}</SmoothScroll>
       </body>
