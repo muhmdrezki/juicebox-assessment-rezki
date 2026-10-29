@@ -12,6 +12,11 @@
   margin-inline: auto;
 }
 
+/* Focused only by code after a page change (not a control), so no focus ring. */
+.screen:focus {
+  outline: none;
+}
+
 .main {
   display: flex;
   flex: 1;

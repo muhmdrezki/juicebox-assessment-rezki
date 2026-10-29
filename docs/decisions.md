@@ -33,3 +33,7 @@
 | 2026-10-29 | Results: Lottie plays once as the small hexagon (recoloured #CDAAFF) and rests on the Figma icon; quiet "First name / Email" summary below the message (README remark) | PDF needs a results Lottie and an input summary; design shows neither, so both stay minimal |
 | 2026-10-29 | /results without valid saved answers → router.replace('/form'); nothing shown until the store is hydrated | No "Thanks, !" flash; stored data re-validated |
 | 2026-10-29 | Saved answers loaded by each page via useFlowHydration() (replaces the one-time <FlowHydration /> in the layout) | Results page stayed blank after a hot reload; each consumer now ensures the store is loaded |
+| 2026-10-29 | Form entrance motion: prompt rises in (each step), field fades in once with opacity only | Owner noticed the form had no animation; the field must stay focusable |
+| 2026-10-29 | `turbopack.root` set instead of deleting the stray parent `package-lock.json`; `engines.node >= 20.9.0` | Don't touch files outside the repo; Next 16 minimum |
+| 2026-10-29 | Deploy to Vercel after phase F via the Vercel CLI (owner logs in) | Owner's choice |
+| 2026-10-29 | RouteFocus: after in-app navigation, focus the new screen root unless the page focused something | QA: focus fell to <body> after page changes (WCAG 2.4.3) |

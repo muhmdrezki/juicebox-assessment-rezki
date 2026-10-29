@@ -31,7 +31,9 @@ type ScreenLayoutProps = {
 /** Page shell: header, optional media, main content and bottom actions. */
 export default function ScreenLayout({ back, media, actions, children }: ScreenLayoutProps) {
   return (
-    <div className={styles.screen}>
+    // data-screen + tabIndex={-1}: RouteFocus can focus the screen after a page change
+    // (not reachable with Tab itself), so the next Tab lands on "Go back".
+    <div className={styles.screen} data-screen="" tabIndex={-1}>
       <AppHeader back={back} />
 
       <main className={cx(styles.main, media ? styles.withMedia : null)}>
