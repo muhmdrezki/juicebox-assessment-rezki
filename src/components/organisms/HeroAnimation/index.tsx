@@ -23,6 +23,7 @@ import HexagonArt from '@/components/atoms/HexagonArt';
 import LottiePlayer from '@/components/atoms/LottiePlayer';
 import { cx } from '@/lib/cx';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { HEXAGON_MORPH } from '@/lib/morph';
 import { MOTION_OK_QUERY } from '@/lib/motion';
 import styles from './index.module.css';
 
@@ -41,6 +42,14 @@ const LABELS = [
 /** Seconds to wait for the Lottie before showing the artwork anyway. */
 const LOTTIE_FALLBACK_S = 4;
 
+/**
+ * True once the intro has finished in this visit. Coming back to the
+ * homepage later (e.g. from the walkthrough) skips the intro and shows the
+ * final state at once, so the page transition's hexagon morph has a visible
+ * target to land on. Module-level ≈ a variable outside setup() in a Vue SFC.
+ */
+let introPlayed = false;
+
 /** Homepage hero: Lottie hexagon → Figma artwork, plus floating labels. */
 export default function HeroAnimation() {
   const root = useRef<HTMLDivElement>(null);
@@ -52,11 +61,19 @@ export default function HeroAnimation() {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK_QUERY, () => {
+        // Already seen this visit: final state straight away (artwork, labels), no intro.
+        if (introPlayed) {
+          gsap.set('[data-hero="hexagon"], [data-hero="label"], [data-hero="art"]', { autoAlpha: 1 });
+          gsap.set('[data-hero="lottie"]', { autoAlpha: 0 });
+          return;
+        }
+
         gsap.set('[data-hero="art"]', { autoAlpha: 0 }); // hidden until the Lottie has played
 
         // Intro: hexagon grows in, then the labels appear one by one.
+        // Marked as played only when it finishes (so React's dev double-run doesn't skip it).
         gsap
-          .timeline({ defaults: { ease: 'power3.out' } })
+          .timeline({ defaults: { ease: 'power3.out' }, onComplete: () => void (introPlayed = true) })
           .fromTo('[data-hero="hexagon"]', { autoAlpha: 0, scale: 0.85 }, { autoAlpha: 1, scale: 1, duration: 1.2 })
           .fromTo(
             '[data-hero="label"]',
@@ -84,7 +101,8 @@ export default function HeroAnimation() {
 
   return (
     <div ref={root} className={styles.hero} aria-hidden="true">
-      <div className={styles.hexagon} data-hero="hexagon" data-reveal="">
+      {/* HEXAGON_MORPH: morphs into the walkthrough's hexagon on "Get a reality check". */}
+      <div className={cx(styles.hexagon, HEXAGON_MORPH.always)} data-hero="hexagon" data-reveal="">
         <div className={styles.lottie} data-hero="lottie">
           {/* onComplete ≈ @complete="revealArt" */}
           <LottiePlayer src="/lottie/hexagon.json" plays={1} onComplete={() => revealArt.current?.()} className={styles.fill} />

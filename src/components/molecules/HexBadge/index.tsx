@@ -23,11 +23,11 @@ import styles from './index.module.css';
 type Stage = 'icon' | 'lottie' | 'done';
 
 /** Small hexagon: Lottie once, then the Figma icon. Decorative. */
-export default function HexBadge() {
+export default function HexBadge({ className }: { className?: string }) {
   const [stage, setStage] = useState<Stage>('icon'); // ≈ const stage = ref('icon')
 
   return (
-    <div className={styles.badge} aria-hidden="true">
+    <div className={cx(styles.badge, className)} aria-hidden="true">
       <HexIcon className={cx(stage === 'lottie' && styles.hidden)} />
       <LottiePlayer
         src="/lottie/hexagon.json"

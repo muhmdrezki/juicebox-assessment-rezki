@@ -123,6 +123,133 @@ h3 {
   }
 }
 
+/* ---------- Page transitions (View Transitions API, via React <ViewTransition>) ----------
+ * Figma prototype "smart animate": on a page change the header stays put, the
+ * hexagon morphs into the next screen's hexagon (lib/morph.ts), and the rest of
+ * the screen slides: from the right going forward, from the left going back.
+ * Vue equivalent: <Transition name="nav-forward"> around <router-view> plus a
+ * shared-element (FLIP) animation for the hexagon.
+ * Browsers without the API simply swap the screens.
+ */
+
+/* Clicks during the short transition reach the live page. */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Header: one still snapshot above the sliding content. */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* "The hexagon" of each screen (lib/morph.ts): one element per screen and width. */
+.vt-hexagon {
+  view-transition-name: hexagon;
+  view-transition-class: morph;
+}
+
+@media (max-width: 1023.98px) {
+  .vt-hexagon-mobile {
+    view-transition-name: hexagon;
+    view-transition-class: morph;
+  }
+}
+
+@media (min-width: 1024px) {
+  .vt-hexagon-desktop {
+    view-transition-name: hexagon;
+    view-transition-class: morph;
+  }
+}
+
+/* Hexagon: moves and resizes into its new place; a touch of blur hides the
+   swap between the gradient artwork and the flat icon. */
+::view-transition-group(.morph) {
+  animation-duration: var(--duration-page);
+  animation-timing-function: var(--ease-out);
+  z-index: 50;
+}
+
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+  animation-duration: var(--duration-page);
+}
+
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
+/* Screen content: the old screen fades out quickly, the new one fades in after
+   it, while both slide 60px in the direction of travel. */
+::view-transition-old(.nav-forward),
+::view-transition-old(.nav-back) {
+  animation:
+    var(--duration-page-out) ease-in both page-fade reverse,
+    var(--duration-page) var(--ease-out) both page-slide reverse;
+}
+
+::view-transition-new(.nav-forward),
+::view-transition-new(.nav-back) {
+  animation:
+    var(--duration-page-in) ease-out var(--duration-page-out) both page-fade,
+    var(--duration-page) var(--ease-out) both page-slide;
+}
+
+/* Forward: content moves left (old leaves to the left, new comes from the right). */
+::view-transition-old(.nav-forward) {
+  --slide-offset: calc(-1 * var(--page-slide));
+}
+
+::view-transition-new(.nav-forward) {
+  --slide-offset: var(--page-slide);
+}
+
+/* Back: the mirror image. */
+::view-transition-old(.nav-back) {
+  --slide-offset: var(--page-slide);
+}
+
+::view-transition-new(.nav-back) {
+  --slide-offset: calc(-1 * var(--page-slide));
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes page-slide {
+  from {
+    translate: var(--slide-offset);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+/* Reduced motion: no page animation — screens swap instantly. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
 /* ---------- Accessibility helpers ---------- */
 
 /* One clearly visible focus ring, only for keyboard users (WCAG 2.4.7). */

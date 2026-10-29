@@ -11,7 +11,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { cx } from '@/lib/cx';
-import type { NavAction } from '@/lib/nav';
+import { transitionTypesFor, type NavAction } from '@/lib/nav';
 import styles from './index.module.css';
 
 // `href` or `onClick`, never both (see lib/nav.ts).
@@ -24,13 +24,13 @@ type IconButtonProps = NavAction & {
 };
 
 /** Round icon-only control; a link when `href` is given, otherwise a button. */
-export default function IconButton({ label, icon, href, onClick, className }: IconButtonProps) {
+export default function IconButton({ label, icon, href, direction, onClick, className }: IconButtonProps) {
   const classes = cx(styles.iconButton, className);
 
   // <Link> ≈ <RouterLink>: client-side navigation, renders a real <a>.
   if (href !== undefined) {
     return (
-      <Link href={href} className={classes} aria-label={label}>
+      <Link href={href} className={classes} aria-label={label} transitionTypes={transitionTypesFor(direction)}>
         {icon}
       </Link>
     );

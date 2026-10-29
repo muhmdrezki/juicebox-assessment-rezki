@@ -12,7 +12,8 @@
  * the page's <h1>.
  *
  * Motion (Figma prototype: "smart animate" into Step 3):
- * - the icon + question rise in on arrival and again on every new question;
+ * - the question rises in on arrival and again on every new question (the icon
+ *   stays still: it is the target of the page-transition hexagon morph);
  * - the field fades in once on arrival — opacity only, never `visibility`,
  *   so it stays focusable (the cursor is put in it straight away).
  * Reduced motion: no animation; [data-fade] is only pre-hidden when motion is OK.
@@ -21,6 +22,7 @@ import { useRef, type ReactNode } from 'react';
 import HexIcon from '@/components/atoms/HexIcon';
 import Prompt from '@/components/molecules/Prompt';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { HEXAGON_MORPH } from '@/lib/morph';
 import { MOTION_OK_QUERY } from '@/lib/motion';
 import styles from './index.module.css';
 
@@ -36,7 +38,7 @@ type FormStepProps = {
 export default function FormStep({ inputId, question, children }: FormStepProps) {
   const root = useRef<HTMLDivElement>(null);
 
-  // ≈ watch(() => props.question, …, { immediate: true }): the prompt rises in
+  // ≈ watch(() => props.question, …, { immediate: true }): the question rises in
   // on arrival and whenever the question changes (step 1 ↔ 2).
   useGSAP(
     () => {
@@ -63,13 +65,14 @@ export default function FormStep({ inputId, question, children }: FormStepProps)
 
   return (
     <div ref={root} className={styles.step}>
-      <div data-fade="prompt">
-        <Prompt icon={<HexIcon />} spacing="lg">
-          <h1>
-            <label htmlFor={inputId}>{question}</label>
-          </h1>
-        </Prompt>
-      </div>
+      {/* HEXAGON_MORPH.mobile: on phones the walkthrough hexagon shrinks into this icon
+          on "Get started" (on desktop the big hexagon on the left takes that role).
+          The icon itself is not animated here, so the morph lands exactly on it. */}
+      <Prompt icon={<HexIcon className={HEXAGON_MORPH.mobile} />} spacing="lg">
+        <h1 data-fade="prompt">
+          <label htmlFor={inputId}>{question}</label>
+        </h1>
+      </Prompt>
 
       <div className={styles.answer} data-fade="field">
         {children}

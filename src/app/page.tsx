@@ -25,7 +25,7 @@ export default function HomePage() {
       actions={
         <Reveal delay={0.6}>
           {/* Figma prototype: this button opens the walkthrough (decision 2026-10-29). */}
-          <Button href="/walkthrough" variant="primary">
+          <Button href="/walkthrough" variant="primary" direction="forward">
             Get a reality check
           </Button>
         </Reveal>

@@ -14,7 +14,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { cx } from '@/lib/cx';
-import type { LinkAction } from '@/lib/nav';
+import { transitionTypesFor, type LinkAction } from '@/lib/nav';
 import styles from './index.module.css';
 
 type Variant = 'primary' | 'outline' | 'light';
@@ -25,7 +25,7 @@ type Variant = 'primary' | 'outline' | 'light';
  */
 type ButtonAction =
   | (LinkAction & { type?: never })
-  | { href?: never; onClick?: () => void; type?: 'button' | 'submit' };
+  | { href?: never; onClick?: () => void; type?: 'button' | 'submit'; direction?: never };
 
 type ButtonProps = ButtonAction & {
   variant?: Variant;
@@ -34,12 +34,21 @@ type ButtonProps = ButtonAction & {
 };
 
 /** Full-width text button; a link when `href` is given. */
-export default function Button({ variant = 'primary', children, className, href, onClick, type = 'button' }: ButtonProps) {
+export default function Button({
+  variant = 'primary',
+  children,
+  className,
+  href,
+  direction,
+  onClick,
+  type = 'button',
+}: ButtonProps) {
   const classes = cx(styles.button, styles[variant], className);
 
   if (href !== undefined) {
     return (
-      <Link href={href} className={classes}>
+      // transitionTypes: which way the screen slides (see lib/nav.ts)
+      <Link href={href} className={classes} transitionTypes={transitionTypesFor(direction)}>
         {children}
       </Link>
     );

@@ -15,6 +15,9 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Button from '@/components/atoms/Button';
 import HexagonArt from '@/components/atoms/HexagonArt';
+import { cx } from '@/lib/cx';
+import { HEXAGON_MORPH } from '@/lib/morph';
+import { transitionTypesFor } from '@/lib/nav';
 import WalkthroughSlider, { type WalkthroughSlide } from '@/components/organisms/WalkthroughSlider';
 import ScreenLayout from '@/components/templates/ScreenLayout';
 import styles from './page.module.css';
@@ -59,7 +62,7 @@ export default function WalkthroughPage() {
   // <button> (never swapped for a link), so keyboard focus stays on it.
   function goBack() {
     if (index > 0) changeSlide(index - 1);
-    else router.push('/'); // ≈ router.push('/') in Vue Router
+    else router.push('/', { transitionTypes: transitionTypesFor('back') }); // ≈ router.push('/') in Vue Router
   }
 
   // ≈ watch(index, …): after the swap, put the focus back on the new button.
@@ -73,12 +76,18 @@ export default function WalkthroughPage() {
     <ScreenLayout
       back={{ onClick: goBack }}
       media={
-        <HexagonArt box="small" className={styles.hexagon} sizes="(min-width: 1024px) 370px, 146px" preload />
+        // HEXAGON_MORPH: morphs from the home hexagon, and into the form's hexagon on "Get started".
+        <HexagonArt
+          box="small"
+          className={cx(styles.hexagon, HEXAGON_MORPH.always)}
+          sizes="(min-width: 1024px) 370px, 146px"
+          preload
+        />
       }
       actions={
         <div ref={actions}>
           {isLast ? (
-            <Button href="/form" variant="light">
+            <Button href="/form" variant="light" direction="forward">
               Get started
             </Button>
           ) : (
