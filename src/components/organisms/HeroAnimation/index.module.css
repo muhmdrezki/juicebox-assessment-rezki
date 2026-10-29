@@ -36,11 +36,6 @@
   height: 100%;
 }
 
-/* Figma artwork, exactly the 274 × 290 box, on top of the Lottie. */
-.art {
-  object-fit: contain;
-}
-
 /* Labels — Söhne Buch, Text Size/Caption 12px, 135%, 2%, Type/light heading */
 .label {
   position: absolute;

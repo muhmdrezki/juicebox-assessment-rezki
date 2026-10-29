@@ -78,8 +78,13 @@
   --hexagon-width: 17.125rem;    /* 274px — home hexagon */
   --hexagon-height: 18.125rem;   /* 290px */
   --hero-scale-desktop: 1.35;    /* our desktop design: hero fills the left column */
+  --hexagon-sm-width: 9.125rem;  /* 146px — walkthrough hexagon */
+  --hexagon-sm-height: 9.6875rem; /* 155px */
+  --walkthrough-text-height: 9.375rem; /* 150px — fixed text box, so the dots never jump between slides */
+  --dot-size: 0.5rem;            /* 8px pagination dot */
 
   /* ---------- Effects ---------- */
+  --text-dim-opacity: 0.5;                      /* walkthrough copy not yet "read": #FAFAFA at 50% */
   --button-ring-width: 0.5rem;                  /* 8px outer border on the white button */
   --bg-glow-size: 120% 62%;                    /* Figma "Background" glow: ~527px tall on an 844px frame */
   --focus-ring-width: 2px;                      /* Not in Figma: keyboard focus ring */

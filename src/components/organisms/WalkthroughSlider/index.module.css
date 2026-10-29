@@ -1,0 +1,32 @@
+/*
+ * WalkthroughSlider — Figma Step 2.1: text box 350 × 150 (fixed, so the
+ * dots don't jump between slides), 48px below it the dots. Text centred.
+ */
+.slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.swiper {
+  width: 100%;
+}
+
+/* Every slide's text box is 150px tall, whatever the copy length. */
+.text {
+  min-height: var(--walkthrough-text-height);
+}
+
+.dots {
+  margin-top: var(--space-12);
+}
+
+/* ---------- Desktop (our own design) ---------- */
+@media (min-width: 1024px) {
+  .slider {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

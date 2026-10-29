@@ -18,8 +18,8 @@
  * The whole block is decorative, so it is hidden from screen readers
  * (aria-hidden): the headline below carries the message.
  */
-import Image from 'next/image';
 import { useRef } from 'react';
+import HexagonArt from '@/components/atoms/HexagonArt';
 import LottiePlayer from '@/components/atoms/LottiePlayer';
 import { cx } from '@/lib/cx';
 import { gsap, useGSAP } from '@/lib/gsap';
@@ -89,16 +89,7 @@ export default function HeroAnimation() {
           {/* onComplete ≈ @complete="revealArt" */}
           <LottiePlayer src="/lottie/hexagon.json" plays={1} onComplete={() => revealArt.current?.()} className={styles.fill} />
         </div>
-        {/* next/image ≈ <img> that Next resizes and converts to WebP/AVIF. alt="" = decorative. */}
-        <Image
-          src="/images/hexagon.png"
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 370px, 274px"
-          priority
-          className={styles.art}
-          data-hero="art"
-        />
+        <HexagonArt sizes="(min-width: 1024px) 370px, 274px" preload data-hero="art" />
       </div>
 
       {/* v-for="label in LABELS" :key="label.id" */}
