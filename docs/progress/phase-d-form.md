@@ -25,10 +25,12 @@ and focus — and keep the answers for the results page.
 | `src/components/molecules/TextInput` | Field + error; `aria-invalid`, `aria-describedby`, polite live region; `action` slot | molecule |
 | `src/components/molecules/FormStep` | Icon + question (`<h1><label>`) + field pinned to the bottom | molecule |
 | `src/components/organisms/MultiStepForm` | Renders the current step from a config list; validates; moves focus | organism |
-| `src/context/FlowContext` | Answers `{ firstName, email }` in sessionStorage (≈ Pinia store) | context |
+| `src/store/Flow` (`index`, `state`, `actions`) | Zustand store: answers `{ firstName, email }`, persisted to sessionStorage (≈ Pinia store) | store |
+| `src/lib/safeSessionStorage.ts` | sessionStorage that never throws (memory fallback when blocked or full) | helper |
+| `src/providers/FlowHydration` | Restores the saved answers after mount (`persist.rehydrate()`) | provider |
 | `src/lib/validation.ts` | `validateFirstName`, `validateEmail`, `isEmailShape` — string methods only | helper |
 | `src/app/form/layout.tsx`, `page.tsx`, `page.module.css` | Title "Your details"; owns the step; back / next / → `/results` | route |
-| `src/app/layout.tsx` | Wraps the app in `<FlowProvider>` | — |
+| `src/app/layout.tsx` | Renders `<FlowHydration />` | — |
 | `src/components/templates/ScreenLayout` | Content area grows (`flex: 1`) so a field can sit at the bottom | template |
 
 ## Measured against Figma (390 × 665)
@@ -52,9 +54,12 @@ Nothing turns red until the user presses Continue; after that the message update
 Values are trimmed when saved.
 
 ## How it works — in Vue 3 terms
-- **`FlowContext` ≈ a Pinia store.** `<FlowProvider>` in the root layout ≈ `app.use(pinia)`;
-  `useFlow()` in a page ≈ `useFlowStore()`; `setAnswer()` ≈ an action. Inside, `useSyncExternalStore`
-  reads sessionStorage like an outside store, so the server HTML and first browser render match.
+- **Zustand store ≈ a Pinia store** (replaced the first React Context version at the owner's request).
+  `create(persist(...))` ≈ `defineStore` + pinia-plugin-persistedstate; no provider. In a page:
+  `useFlowStore((s) => s.answers)` ≈ `storeToRefs(useFlowStore()).answers` — the selector means the page
+  only re-renders when `answers` changes. `skipHydration` + `<FlowHydration />` load the saved answers
+  right after the page is matched to the server HTML (no hydration warning); `hydrated` tells phase e when
+  the answers are ready.
 - **Page owns the step**, like a Vue page: `useState(0)` ≈ `ref(0)`. `MultiStepForm` gets
   `steps / step / values` as props and reports `onValueChange` / `onStepComplete` ≈ `emit`.
 - **Config-driven steps:** the page's `STEPS` array is the whole form. A third question = one more entry.

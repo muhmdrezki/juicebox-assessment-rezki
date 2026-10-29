@@ -24,7 +24,7 @@ an ID (`R-*`, `TR-*`, `EC-*`, `A11Y-*`, `OB-*`). Work, QA and review all refer t
 
 ## Stack
 Next.js 16 (App Router) · React 19 · TypeScript strict · CSS Modules + CSS variables ·
-GSAP (+ `@gsap/react`) · Lenis · lottie-web · Swiper. No other UI libraries.
+GSAP (+ `@gsap/react`) · Lenis · lottie-web · Swiper · Zustand (state). No other UI libraries.
 
 ## Folder structure (atomic design)
 ```
@@ -35,7 +35,7 @@ src/
     molecules/            combine atoms (TextInput, FormStep)
     organisms/            full sections (AppHeader, WalkthroughSlider, MultiStepForm)
     templates/            page skeletons with slots (ScreenLayout)
-  context/                shared state (≈ Pinia store)
+  store/                  shared state, Zustand, one PascalCase folder per store (≈ Pinia): index / state / actions
   hooks/                  shared hooks (≈ composables/)
   lib/                    pure helpers (≈ helper/)
   providers/              app-wide client wrappers (SmoothScroll)
@@ -54,7 +54,7 @@ src/
 - **Vue 3 comments (required):** every file starts with a header comment saying what it is and
   its Vue 3 equivalent; every component/function has a one-line comment; non-obvious hooks get
   an inline Vue mapping (`useState ≈ ref`, `useEffect ≈ onMounted/watch`, props ≈ `defineProps`,
-  callback props ≈ `emit`, `children` ≈ default slot, Context ≈ Pinia).
+  callback props ≈ `emit`, `children` ≈ default slot, Zustand store ≈ Pinia).
 - `'use client'` only on components that need state, effects or browser APIs.
 - Animations: create inside `useGSAP()` / `useEffect()` and clean up on unmount;
   all of GSAP, Lottie and Lenis respect `prefers-reduced-motion`.

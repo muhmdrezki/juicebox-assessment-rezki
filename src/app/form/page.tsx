@@ -4,7 +4,7 @@
  *
  * Vue 3 equivalent: pages/Form/index.vue. The page wires things together:
  *   const step = ref(0)                 → useState(0)
- *   const flow = useFlowStore()         → useFlow() (answers in sessionStorage)
+ *   const flow = useFlowStore()         → useFlowStore(selector) (Zustand, saved in sessionStorage)
  *   <MultiStepForm @update:value @next> → onValueChange / onStepComplete props
  *
  * Back: previous question (answers kept), or the walkthrough from the first.
@@ -15,7 +15,7 @@ import { useState } from 'react';
 import HexagonArt from '@/components/atoms/HexagonArt';
 import MultiStepForm, { type FormStepConfig } from '@/components/organisms/MultiStepForm';
 import ScreenLayout from '@/components/templates/ScreenLayout';
-import { useFlow, type AnswerName } from '@/context/FlowContext';
+import { useFlowStore, type AnswerName } from '@/store/Flow';
 import { FIRST_NAME_MAX, validateEmail, validateFirstName } from '@/lib/validation';
 
 /** The questions, in order. Copy from Figma. `name` is the key in the answers. */
@@ -43,7 +43,9 @@ const STEPS: readonly FormStepConfig<AnswerName>[] = [
 /** Multistep form: first name, then email, then the results page. */
 export default function FormPage() {
   const [step, setStep] = useState(0); // ≈ const step = ref(0)
-  const { answers, setAnswer } = useFlow(); // ≈ const flow = useFlowStore()
+  // ≈ const { answers } = storeToRefs(useFlowStore()); const { setAnswer } = useFlowStore()
+  const answers = useFlowStore((s) => s.answers);
+  const setAnswer = useFlowStore((s) => s.setAnswer);
   const router = useRouter();
 
   function goBack() {
@@ -61,7 +63,7 @@ export default function FormPage() {
       back={{ onClick: goBack }}
       media={
         // Desktop only (our design): the big hexagon in the left column.
-        <HexagonArt box="desktopOnly" sizes="370px" />
+        <HexagonArt box="desktopOnly" sizes="370px" loading="eager" />
       }
     >
       <MultiStepForm
