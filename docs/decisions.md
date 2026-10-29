@@ -18,3 +18,7 @@
 | 2026-10-29 | Commit only on the owner's say-so; push only on the owner's go | Owner's rule |
 | 2026-10-29 | No automated tests | Not required by the PDF |
 | 2026-10-29 | Keep `AGENTS.md` (Next.js block + our rules); `CLAUDE.md` imports it; agents: engineer, qa, code-reviewer | Shared rulebook for any AI tool |
+| 2026-10-29 | Homepage option A: GSAP intro on load + Lenis app-wide (not a scroll-driven hero) | Button on screen without scrolling (fades in within ~1 s); end state = Figma; Lenis helps any page taller than the screen |
+| 2026-10-29 | Floating home labels hidden from screen readers; home button → /walkthrough (README remark: PDF says "form section") | Labels are decorative fragments; Figma prototype links Step 1 → Step 2.1 |
+| 2026-10-29 | Hexagon = supplied Lottie (flat #B488F2 morph, the Figma shape's base colour) cross-faded by GSAP into the Figma artwork (`Beauty.png` fill, exported 2×) | The Lottie alone can't match Figma's gradient; this keeps "Lottie + GSAP" and a pixel-perfect end frame |
+| 2026-10-29 | Back/restart icons and the hexagon artwork exported from Figma | Pixel-perfect (owner: "if you can get assets from Figma, get them") |

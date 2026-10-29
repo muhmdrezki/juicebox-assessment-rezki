@@ -5,8 +5,9 @@
  * Vue 3 equivalent: organisms/AppHeader/index.vue. It only takes props and
  * never touches the store, so any page can reuse it.
  */
-import IconButton, { type NavAction } from '@/components/atoms/IconButton';
+import IconButton from '@/components/atoms/IconButton';
 import Logo from '@/components/atoms/Logo';
+import type { NavAction } from '@/lib/nav';
 import { ArrowLeftIcon, RestartIcon } from '@/components/atoms/Icon';
 import styles from './index.module.css';
 

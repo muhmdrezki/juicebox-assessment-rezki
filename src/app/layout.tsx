@@ -9,6 +9,7 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
+import SmoothScroll from '@/providers/SmoothScroll';
 import '@/styles/tokens.css';
 import './globals.css';
 
@@ -53,7 +54,14 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${bagoss.variable} ${sohne.variable}`}>
-      <body>{children}</body>
+      <body>
+        {/* Without JavaScript nothing animates, so show the [data-reveal] content. */}
+        <noscript>
+          <style>{'[data-reveal] { visibility: visible !important; }'}</style>
+        </noscript>
+        {/* ≈ app.use(SmoothScrollPlugin): Lenis for every page */}
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

@@ -74,9 +74,14 @@
   --logo-width: 7.6875rem;       /* 123px */
   --icon-button-size: 2.875rem;  /* 46px */
   --control-height: 3.75rem;     /* 60px — buttons and inputs */
+  --hero-height: 21.625rem;      /* 346px — home hero area below the header (Frame 427320923 minus header) */
+  --hexagon-width: 17.125rem;    /* 274px — home hexagon */
+  --hexagon-height: 18.125rem;   /* 290px */
+  --hero-scale-desktop: 1.35;    /* our desktop design: hero fills the left column */
 
   /* ---------- Effects ---------- */
-  --bg-glow-size: 120% 62%;                     /* Figma "Background" glow: ~527px tall on an 844px frame */
+  --button-ring-width: 0.5rem;                  /* 8px outer border on the white button */
+  --bg-glow-size: 120% 62%;                    /* Figma "Background" glow: ~527px tall on an 844px frame */
   --focus-ring-width: 2px;                      /* Not in Figma: keyboard focus ring */
   --focus-ring-offset: 3px;
   --blur-surface: 60px;                         /* Figma "Background blur 120" ≈ CSS blur(60px) */

@@ -11,18 +11,10 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { cx } from '@/lib/cx';
+import type { NavAction } from '@/lib/nav';
 import styles from './index.module.css';
 
-/**
- * Either navigate (`href`) or run an action (`onClick`) — never both, never
- * neither. The `?: never` makes TypeScript reject passing both.
- * ≈ a Vue prop validator that accepts exactly one of two shapes.
- *
- * Note: `onClick` is a function, and functions can't be sent from a Server
- * Component to the browser — only pass it from a 'use client' component.
- */
-export type NavAction = { href: string; onClick?: never } | { onClick: () => void; href?: never };
-
+// `href` or `onClick`, never both (see lib/nav.ts).
 type IconButtonProps = NavAction & {
   /** Accessible name, read by screen readers (the icon itself is hidden). */
   label: string;

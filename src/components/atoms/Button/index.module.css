@@ -1,0 +1,52 @@
+/*
+ * Button — Figma "Primary Buttons": Fill width (350 at 390), height 60,
+ * radius 19, Söhne Buch 16px / 135%, letter-spacing 2%.
+ */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--control-height);
+  padding-inline: var(--space-6);
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  text-align: center;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+/* Purple fill — Brand Colours/Primary Colours light, label Type/dark heading */
+.primary {
+  background: var(--color-primary-light);
+  color: var(--color-text-dark);
+}
+
+/* Outline — 1px Line/line stroke medium (#FFF 60%), label Type/light heading */
+.outline {
+  background: transparent;
+  border-color: var(--color-line);
+  color: var(--color-text);
+}
+
+/* White — Brand Colours/Action Colours + 8px outer ring Background/Button Background */
+.light {
+  background: var(--color-action);
+  color: var(--color-text-dark);
+  box-shadow: 0 0 0 var(--button-ring-width) var(--color-button-ring);
+}
+
+/* Not in Figma: subtle hover for mouse users only. */
+@media (hover: hover) {
+  .button:hover {
+    opacity: 0.9;
+  }
+}
+
+/* The light button's ring sits where the focus ring would; push the focus ring outside it. */
+.light:focus-visible {
+  outline-offset: calc(var(--button-ring-width) + var(--focus-ring-offset));
+}

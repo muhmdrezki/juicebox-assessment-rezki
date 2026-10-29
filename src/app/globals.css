@@ -73,6 +73,35 @@ h3 {
   letter-spacing: var(--ls-heading);
 }
 
+/* ---------- Animation ---------- */
+
+/*
+ * Elements GSAP reveals start hidden, so they don't flash before the
+ * animation runs. Only when motion is OK: with reduced motion GSAP doesn't
+ * run and they are simply shown. (A <noscript> rule in layout.tsx covers no-JS.)
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    visibility: hidden;
+  }
+
+  /*
+   * Safety net: if JavaScript is on but fails (chunk error, crash), show the
+   * content after 2.5 s anyway. GSAP writes an inline `visibility` style the
+   * moment it takes over an element, so the net never fights a running
+   * animation — it only catches elements GSAP never touched.
+   */
+  [data-reveal]:not([style*='visibility']) {
+    animation: reveal-failsafe 0s 2.5s forwards;
+  }
+}
+
+@keyframes reveal-failsafe {
+  to {
+    visibility: visible;
+  }
+}
+
 /* ---------- Accessibility helpers ---------- */
 
 /* One clearly visible focus ring, only for keyboard users (WCAG 2.4.7). */
