@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Button from '@/components/atoms/Button';
 import HexagonArt from '@/components/atoms/HexagonArt';
+import { HEXAGON_MORPH } from '@/lib/morph';
 import Reveal from '@/components/atoms/Reveal';
 import AnswerSummary from '@/components/molecules/AnswerSummary';
 import HexBadge from '@/components/molecules/HexBadge';
@@ -45,12 +46,13 @@ export default function ResultsPage() {
 
   return (
     <ScreenLayout
-      back={{ href: '/form' }}
-      media={<HexagonArt box="desktopOnly" sizes="370px" loading="eager" />}
+      back={{ href: '/form', direction: 'back' }}
+      // Desktop: the big hexagon is "the hexagon" for the page-transition morph.
+      media={<HexagonArt box="desktopOnly" className={HEXAGON_MORPH.desktop} sizes="370px" loading="eager" />}
       actions={
         ready ? (
           <Reveal delay={0.6}>
-            <Button href="/" variant="light">
+            <Button href="/" variant="light" direction="forward">
               Continue
             </Button>
           </Reveal>
@@ -59,7 +61,8 @@ export default function ResultsPage() {
     >
       {ready && (
         <>
-          <Prompt icon={<HexBadge />} spacing="md">
+          {/* HEXAGON_MORPH.mobile: on phones the form's small icon carries over into this badge. */}
+          <Prompt icon={<HexBadge className={HEXAGON_MORPH.mobile} />} spacing="md">
             <Reveal className={styles.message}>
               <h1>Thanks, {firstName}! Now, it’s time to get a reality check.</h1>
               <p>This will take 2-3 minutes.</p>

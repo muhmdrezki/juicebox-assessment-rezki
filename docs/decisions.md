@@ -38,3 +38,4 @@
 | 2026-10-29 | Deploy to Vercel after phase F via the Vercel CLI (owner logs in) | Owner's choice |
 | 2026-10-29 | RouteFocus: after in-app navigation, focus the new screen root unless the page focused something | QA: focus fell to <body> after page changes (WCAG 2.4.3) |
 | 2026-10-29 | Deployed to https://juicebox-assessment-rezki.vercel.app via the Vercel CLI | Owner logged in; production domain is public |
+| 2026-10-29 | Page transitions (React <ViewTransition>): header still, hexagon morphs between screens, content slides forward/back; morph target chosen per width via global classes (lib/morph.ts); home intro plays once per visit | Owner: transition between screens; Figma prototype uses smart animate. Results "Continue" → home counts as forward (finishing the flow), "Start over" as back |

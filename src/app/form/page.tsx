@@ -16,6 +16,8 @@ import HexagonArt from '@/components/atoms/HexagonArt';
 import MultiStepForm, { type FormStepConfig } from '@/components/organisms/MultiStepForm';
 import ScreenLayout from '@/components/templates/ScreenLayout';
 import { useFlowHydration, useFlowStore, type AnswerName } from '@/store/Flow';
+import { HEXAGON_MORPH } from '@/lib/morph';
+import { transitionTypesFor } from '@/lib/nav';
 import { FIRST_NAME_MAX, validateEmail, validateFirstName } from '@/lib/validation';
 
 /** The questions, in order. Copy from Figma. `name` is the key in the answers. */
@@ -51,20 +53,21 @@ export default function FormPage() {
 
   function goBack() {
     if (step > 0) setStep(step - 1);
-    else router.push('/walkthrough');
+    else router.push('/walkthrough', { transitionTypes: transitionTypesFor('back') });
   }
 
   function next() {
     if (step < STEPS.length - 1) setStep(step + 1);
-    else router.push('/results');
+    else router.push('/results', { transitionTypes: transitionTypesFor('forward') });
   }
 
   return (
     <ScreenLayout
       back={{ onClick: goBack }}
       media={
-        // Desktop only (our design): the big hexagon in the left column.
-        <HexagonArt box="desktopOnly" sizes="370px" loading="eager" />
+        // Desktop only (our design): the big hexagon in the left column — on desktop
+        // it is "the hexagon" for the page-transition morph (HEXAGON_MORPH.desktop).
+        <HexagonArt box="desktopOnly" className={HEXAGON_MORPH.desktop} sizes="370px" loading="eager" />
       }
     >
       <MultiStepForm

@@ -19,7 +19,9 @@ type AppHeaderProps = {
 /** Shared header used by every screen. Restart always goes to the homepage. */
 export default function AppHeader({ back }: AppHeaderProps) {
   return (
-    <header className={styles.header}>
+    // viewTransitionName: the header gets its own snapshot and stays still during page
+    // transitions (globals.css). Inline, because CSS Modules would rename the identifier.
+    <header className={styles.header} style={{ viewTransitionName: 'site-header' }}>
       {/* Left slot: empty on the homepage, keeps the logo centred. */}
       <div className={styles.side}>
         {/* {...back} spreads { href } or { onClick } as props ≈ v-bind="back" */}
@@ -29,7 +31,7 @@ export default function AppHeader({ back }: AppHeaderProps) {
       <Logo />
 
       <div className={`${styles.side} ${styles.end}`}>
-        <IconButton label="Start over" icon={<RestartIcon />} href="/" />
+        <IconButton label="Start over" icon={<RestartIcon />} href="/" direction="back" />
       </div>
     </header>
   );

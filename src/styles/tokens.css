@@ -103,6 +103,10 @@
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-page: 450ms;       /* page transition: slide + hexagon morph (Figma prototype spring ≈ 0.45 s) */
+  --duration-page-out: var(--duration-fast); /* old screen fades out */
+  --duration-page-in: 210ms;    /* new screen fades in, after the old one is gone */
+  --page-slide: 60px;           /* how far the screen content slides on a page change */
 }
 
 /* Reduced motion for CSS is handled once, in globals.css. */
