@@ -1,0 +1,61 @@
+/*
+ * TextInput — Figma "Chatbot textbox": Fill 350 × 60, radius 18,
+ * 1px Line/line stroke medium (#FFF 60%), padding 0 12, space-between.
+ * Placeholder: Söhne Buch 16px / 135%, 2%, Type/captions (#FFF 60%).
+ */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--control-height);
+  padding-inline: var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-input);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+/* The whole box shows the focus ring while the input is focused (the input
+   itself has none). Not when the arrow button has focus: it has its own ring. */
+.field:has(.input:focus-visible) {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--fs-body); /* 16px also stops iOS from zooming in on focus */
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  color: var(--color-text);
+  outline: none; /* replaced by the ring on .field */
+}
+
+.input::placeholder {
+  color: var(--color-text-caption);
+  opacity: 1;
+}
+
+/* ---------- Error state (Not in Figma: our design) ---------- */
+.invalid .field {
+  border-color: var(--color-error);
+}
+
+.error {
+  margin-top: var(--space-2); /* Figma gap 8 below the field */
+  padding-inline: var(--space-3);
+  font-size: var(--fs-error);
+  line-height: var(--lh-body);
+  color: var(--color-error);
+}

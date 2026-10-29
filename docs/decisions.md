@@ -25,3 +25,7 @@
 | 2026-10-29 | Walkthrough copy lights up word by word (GSAP) from #FAFAFA 50% to 100%; only the text slides | Figma shows the effect frozen; dim value measured from a Figma export |
 | 2026-10-29 | Walkthrough back is always a button: previous slide, or router.push('/') on slide 1 | Swapping link ↔ button lost keyboard focus |
 | 2026-10-29 | No regular expressions in the code; HighlightText splits on a plain space | Owner's rule |
+| 2026-10-29 | Form: the question is the visible `<label>` (and `<h1>`); cursor in the field on arrival and each step | Strongest labelling; Figma shows the keyboard open |
+| 2026-10-29 | Form errors (not in Figma): `#FF9B9B` border + 14px message; shown after the first Continue, then live | No red before the user tries |
+| 2026-10-29 | Answers in sessionStorage via FlowContext, prefilled when returning; "Start over" clears nothing | Survives refresh on /results; cleared when the tab closes |
+| 2026-10-29 | Email check with string methods (one `@`, text before, a `.` after) instead of the browser's typeMismatch | No regex; the browser accepts `a@b` without a dot |

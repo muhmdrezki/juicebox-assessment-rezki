@@ -24,6 +24,15 @@ export function ArrowLeftIcon() {
   );
 }
 
+/** Up arrow — the form's submit button. Figma "Arrow up" (18 × 18, 1px stroke). */
+export function ArrowUpIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false">
+      <path d="M14.25 7.5L9 2.25L3.75 7.5M9 2.25L9 15.75" stroke="currentColor" strokeWidth="1" />
+    </svg>
+  );
+}
+
 /** Two circular arrows — restart button. Figma "Refresh". */
 export function RestartIcon() {
   return (

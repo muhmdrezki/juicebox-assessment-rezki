@@ -73,9 +73,7 @@ export default function WalkthroughPage() {
     <ScreenLayout
       back={{ onClick: goBack }}
       media={
-        <div className={styles.hexagon}>
-          <HexagonArt sizes="(min-width: 1024px) 370px, 146px" preload />
-        </div>
+        <HexagonArt box="small" className={styles.hexagon} sizes="(min-width: 1024px) 370px, 146px" preload />
       }
       actions={
         <div ref={actions}>

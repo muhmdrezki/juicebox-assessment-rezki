@@ -9,6 +9,7 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
+import { FlowProvider } from '@/context/FlowContext';
 import SmoothScroll from '@/providers/SmoothScroll';
 import '@/styles/tokens.css';
 import './globals.css';
@@ -59,8 +60,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <noscript>
           <style>{'[data-reveal] { visibility: visible !important; }'}</style>
         </noscript>
-        {/* ≈ app.use(SmoothScrollPlugin): Lenis for every page */}
-        <SmoothScroll>{children}</SmoothScroll>
+        {/* ≈ app.use(pinia) + app.use(SmoothScrollPlugin): shared answers and Lenis for every page */}
+        <FlowProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </FlowProvider>
       </body>
     </html>
   );

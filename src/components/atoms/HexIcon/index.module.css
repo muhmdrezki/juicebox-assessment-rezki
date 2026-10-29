@@ -1,0 +1,6 @@
+/* HexIcon — Figma: 29 × 30.79, Brand Colours/Primary Colours light */
+.icon {
+  width: var(--hex-icon-width);
+  height: var(--hex-icon-height);
+  color: var(--color-primary-light);
+}

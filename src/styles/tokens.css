@@ -28,6 +28,7 @@
   --color-surface: rgb(255 255 255 / 0.05);    /* Round icon buttons */
   --color-button-ring: rgb(255 255 255 / 0.1); /* Background/Button Background (8px ring) */
   --color-dot: rgb(255 255 255 / 0.25);        /* Inactive pagination dot */
+  --color-submit: rgb(255 255 255 / 0.6);      /* Background/medium — round submit button */
   --color-focus: var(--color-primary-light);   /* Not in Figma: keyboard focus ring */
   --color-error: #ff9b9b;                      /* Not in Figma: form errors (AA contrast on --color-bg) */
 
@@ -37,6 +38,7 @@
   --font-body: var(--font-sohne), system-ui, -apple-system, sans-serif;     /* Söhne Buch */
 
   --fs-caption: 0.75rem;     /* 12px — Text Size/Caption (floating labels) */
+  --fs-error: 0.875rem;      /* 14px — Not in Figma: form error messages */
   --fs-body: 1rem;           /* 16px — Text Size/Body (buttons, inputs) */
   --fs-question: 1.1875rem;  /* 19px — form question, results message */
   --fs-h4: 1.375rem;         /* 22px — Text Size/H4 (walkthrough copy) */
@@ -82,9 +84,13 @@
   --hexagon-sm-height: 9.6875rem; /* 155px */
   --walkthrough-text-height: 9.375rem; /* 150px — fixed text box, so the dots never jump between slides */
   --dot-size: 0.5rem;            /* 8px pagination dot */
+  --hex-icon-width: 1.8125rem;   /* 29px — small hexagon on form/results */
+  --hex-icon-height: 1.9375rem;  /* 31px */
+  --submit-size: 1.9375rem;      /* 31px — round arrow button inside the input */
 
   /* ---------- Effects ---------- */
-  --text-dim-opacity: 0.5;                      /* walkthrough copy not yet "read": #FAFAFA at 50% */
+  --submit-idle-opacity: 0.5;                   /* Figma: submit button at 50% until there is text */
+  --text-dim-opacity: 0.5;                     /* walkthrough copy not yet "read": #FAFAFA at 50% */
   --button-ring-width: 0.5rem;                  /* 8px outer border on the white button */
   --bg-glow-size: 120% 62%;                    /* Figma "Background" glow: ~527px tall on an 844px frame */
   --focus-ring-width: 2px;                      /* Not in Figma: keyboard focus ring */

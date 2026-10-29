@@ -23,15 +23,17 @@
   justify-content: center;
 }
 
+/* Grows to fill the screen, so content (e.g. the form field) can sit at the bottom. */
 .content {
   display: flex;
+  flex: 1;
   flex-direction: column;
   padding-inline: var(--page-gutter);
 }
 
-/* Figma "Chatbot textbox" action bar: padding 24 / 20, pinned to the bottom. */
+/* Figma "Chatbot textbox" action bar: padding 24 / 20. It ends up at the
+   bottom because .content above it grows (flex: 1). */
 .actions {
-  margin-top: auto;
   padding: var(--space-6) var(--page-gutter);
 }
 
@@ -47,10 +49,6 @@
     max-width: var(--content-max);
     margin-inline: auto;
     justify-content: center;
-  }
-
-  .actions {
-    margin-top: 0;
   }
 
   /* With media: two columns — hexagon left, content + actions right. */

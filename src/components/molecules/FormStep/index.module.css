@@ -1,0 +1,44 @@
+/*
+ * FormStep — Figma "Chatbot textbox" blocks:
+ *   prompt: padding 24 top, gap 32 between icon and question, centred
+ *   question: Bagoss 19px / 120%, 1%, Type/light heading, 350 wide
+ *   answer: padding 24 bottom, pinned to the bottom of the screen
+ */
+.step {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  padding-top: var(--space-6);
+  text-align: center;
+}
+
+.question {
+  font-size: var(--fs-question);
+  line-height: var(--lh-question);
+}
+
+.answer {
+  margin-top: auto;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+/* ---------- Desktop (our own design): question and field together, left aligned ---------- */
+@media (min-width: 1024px) {
+  .prompt {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .answer {
+    margin-top: 0;
+    padding-top: var(--space-8);
+  }
+}
